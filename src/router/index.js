@@ -7,11 +7,16 @@ import Landing from '../pages/Landing.vue'
  import Register from '../pages/Register.vue'
 import Dashboard from '../pages/Dashboard.vue'
  import Inbox from '../pages/Inbox.vue'
+ import Play from "../pages/Play.vue";
 // import MessageDetail from '../pages/MessageDetail.vue'
 
 const routes = [
   { path: '/', component: Landing },
   { path: '/u/:username', component: Landing },
+  {
+  path: "/play",
+  component: Play,
+},
 //   { path: '/nickname', component: Nickname },
    { path: '/u/:username/submit', component: Submit },
    { path: '/login', component: Login },

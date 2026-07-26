@@ -73,34 +73,35 @@
 
         </p>
 
-        <div class="flex gap-5 mt-10">
+       <div class="flex flex-wrap gap-5 mt-10">
 
-          <RouterLink
-            to="/register"
-            class="px-8 py-4 rounded-2xl
-            bg-gradient-to-r
-            from-blue-500
-            to-pink-500
-            font-semibold
-            hover:scale-105
-            transition">
+  <RouterLink
+    to="/register"
+    class="px-8 py-4 rounded-2xl
+    bg-gradient-to-r
+    from-blue-500
+    to-pink-500
+    font-semibold
+    hover:scale-105
+    transition">
 
-            Create Your Link →
+    Create Your Link
 
-          </RouterLink>
+  </RouterLink>
 
-          <a
-            href="#how"
-            class="px-8 py-4 rounded-2xl
-            border border-white/20
-            hover:bg-white/10">
+  <RouterLink
+    to="/play"
+    class="px-8 py-4 rounded-2xl
+    border border-white/20
+    bg-white/10
+    hover:bg-white/20
+    transition">
 
-            How it Works
+    🎮 Play Game
 
-          </a>
+  </RouterLink>
 
-        </div>
-
+</div>
       </div>
 
       <!-- Right -->
