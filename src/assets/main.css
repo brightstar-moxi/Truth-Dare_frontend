@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700;800&display=swap');
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#08081b;
+}
+
+h1,h2,h3,h4,h5{
+    font-family:'Space Grotesk',sans-serif;
+}
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#08081b;
+    color:white;
+}
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#7c3aed;
+    border-radius:50px;
+}
