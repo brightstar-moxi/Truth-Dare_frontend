@@ -3,7 +3,34 @@
     class="min-h-screen bg-[#070414] relative overflow-hidden flex items-center justify-center px-6"
   >
     <!-- Background Glow -->
-    
+    <div class="absolute top-20 left-16 text-yellow-300 text-2xl animate-pulse">
+  ✦
+</div>
+
+<div class="absolute top-40 right-24 text-pink-400 text-3xl animate-pulse">
+  ✦
+</div>
+
+<div class="absolute bottom-32 left-24 text-cyan-400 text-xl animate-pulse">
+  ✦
+</div>
+
+<div class="absolute bottom-20 right-20 text-violet-400 text-2xl animate-pulse">
+  ✦
+</div>
+    <div class="absolute top-32 right-40 w-4 h-4 rounded-full border-2 border-pink-500"></div>
+
+<div class="absolute bottom-44 left-32 w-6 h-6 rounded-full border-2 border-cyan-400"></div>
+
+<div class="absolute top-60 left-10 w-3 h-3 bg-pink-500 rounded-full"></div>
+<div
+  class="absolute -bottom-16 -left-12 w-48 h-48 rounded-full bg-violet-500/20 blur-3xl">
+</div>
+
+<div
+  class="absolute -bottom-12 right-0 w-40 h-40 rounded-full bg-pink-500/20 blur-3xl">
+</div>
+
     <div
       class="absolute w-96 h-96 bg-pink-500/20 blur-[150px] rounded-full -bottom-24 -right-24"
     ></div>
@@ -13,7 +40,7 @@
 
     <!-- Card -->
     <div
-  class="relative z-10 w-full max-w-2xl overflow-hidden
+  class="game-card relative z-10 w-full  relative z-10 w-full max-w-2xl overflow-hidden
   rounded-[40px]
   border border-white/10
   bg-[#15112A]/80
@@ -43,38 +70,12 @@
     alt="Controller"
     class="w-56 drop-shadow-[0_0_60px_#a855f7] animate-float"
   />
-<div class="absolute top-20 left-16 text-yellow-300 text-2xl animate-pulse">
-  ✦
-</div>
 
-<div class="absolute top-40 right-24 text-pink-400 text-3xl animate-pulse">
-  ✦
-</div>
-
-<div class="absolute bottom-32 left-24 text-cyan-400 text-xl animate-pulse">
-  ✦
-</div>
-
-<div class="absolute bottom-20 right-20 text-violet-400 text-2xl animate-pulse">
-  ✦
-</div>
   <div class="absolute -left-6 top-8 text-pink-500 text-4xl">⚡</div>
 
   <div class="absolute -right-6 top-2 text-pink-400 text-4xl">💬</div>
 
   <div class="absolute left-1/2 -bottom-4 w-40 h-6 bg-pink-500/40 blur-2xl rounded-full -translate-x-1/2"></div>
-</div>
-<div class="absolute top-32 right-40 w-4 h-4 rounded-full border-2 border-pink-500"></div>
-
-<div class="absolute bottom-44 left-32 w-6 h-6 rounded-full border-2 border-cyan-400"></div>
-
-<div class="absolute top-60 left-10 w-3 h-3 bg-pink-500 rounded-full"></div>
-<div
-  class="absolute -bottom-16 -left-12 w-48 h-48 rounded-full bg-violet-500/20 blur-3xl">
-</div>
-
-<div
-  class="absolute -bottom-12 right-0 w-40 h-40 rounded-full bg-pink-500/20 blur-3xl">
 </div>
 
       <!-- Heading -->
@@ -147,7 +148,22 @@ transition"
       <!-- Continue -->
       <button
         @click="proceed"
-        class="mt-6 w-full rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-5 text-2xl font-bold text-white shadow-[0_0_40px_rgba(168,85,247,.5)] hover:scale-105 transition"
+       class="mt-8
+w-full
+h-14
+rounded-2xl
+font-bold
+text-lg
+text-white
+bg-gradient-to-r
+from-cyan-500
+via-violet-500
+to-pink-500
+shadow-[0_0_40px_rgba(168,85,247,.6)]
+hover:shadow-[0_0_70px_rgba(168,85,247,.9)]
+hover:scale-105
+transition-all
+duration-300"
       >
         🚀 Continue
       </button>
