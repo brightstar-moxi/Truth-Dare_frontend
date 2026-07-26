@@ -90,7 +90,7 @@
   </RouterLink>
 
   <RouterLink
-    to="/play"
+    :to="`/u/${route.params.username}/play`"
     class="px-8 py-4 rounded-2xl
     border border-white/20
     bg-white/10
@@ -181,3 +181,9 @@ animation:float 5s ease-in-out infinite;
 animation:float2 6s ease-in-out infinite;
 }
 </style>
+
+<script setup>
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+</script>

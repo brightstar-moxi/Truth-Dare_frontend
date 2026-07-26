@@ -14,7 +14,7 @@ const routes = [
   { path: '/', component: Landing },
   { path: '/u/:username', component: Landing },
   {
-  path: "/play",
+  path: "/u/:username/play",
   component: Play,
 },
 //   { path: '/nickname', component: Nickname },
