@@ -12,6 +12,7 @@
     "@tailwindcss/cli": "^4.1.12",
     "@tailwindcss/vite": "^4.1.12",
     "axios": "^1.11.0",
+    "canvas-confetti": "^1.9.4",
     "lucide-vue-next": "^1.0.0",
     "sweetalert2": "^11.26.25",
     "vue": "^3.5.18",

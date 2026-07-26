@@ -144,7 +144,43 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import api from '../plugins/axios'
 import Swal from "sweetalert2";
+import confetti from "canvas-confetti";
+const celebrate = () => {
 
+  // 🎉 Confetti rain
+  confetti({
+    particleCount: 250,
+    spread: 180,
+    startVelocity: 35,
+    origin: {
+      x: 0.5,
+      y: 0
+    }
+  });
+
+  // ✨ Sparkles
+  confetti({
+    particleCount: 120,
+    spread: 360,
+    startVelocity: 15,
+    gravity: 0.3,
+    scalar: 0.8,
+    ticks: 250,
+    shapes: ["star"],
+    colors: [
+      "#FFD700",
+      "#00E5FF",
+      "#A855F7",
+      "#EC4899",
+      "#FFFFFF"
+    ],
+    origin: {
+      x: 0.5,
+      y: 0.2
+    }
+  });
+
+};
 const loading = ref(false);
 
 const route = useRoute()
@@ -178,6 +214,7 @@ const submit = async () => {
       content: content.value,
       nickname,
     });
+    celebrate();
 
     loading.value = false;
 
