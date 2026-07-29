@@ -34,7 +34,7 @@
       </div>
 
       <!-- Cards -->
-      <div class="grid lg:grid-cols-3 gap-8">
+     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         <!-- Share Link -->
         <div
@@ -48,67 +48,75 @@
             Share this link with your friends.
           </p>
 
-          <div
-            class="mt-6 rounded-2xl bg-[#1D1837] border border-white/10 p-5 flex justify-between items-center">
+         <div
+  class="mt-6 rounded-2xl bg-[#1D1837] border border-white/10 p-5">
 
-            <span class="text-cyan-400 truncate">
-              {{ fullShareLink }}
-            </span>
+  <div class="flex flex-col sm:flex-row gap-4">
 
-            <button
-              @click="copyLink"
-              class="ml-5 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 px-6 py-3 text-white font-semibold hover:scale-105 transition">
+    <div class="flex-1 overflow-hidden">
 
-              Copy
+      <p
+        class="text-cyan-400 break-all text-sm sm:text-base">
 
-            </button>
+        {{ fullShareLink }}
 
-          </div>
+      </p>
 
-        </div>
+    </div>
 
-        <!-- Quick Stats -->
-        <div
-          class="rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-8">
+    <button
+      @click="copyLink"
+      class="w-full sm:w-auto rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 px-6 py-3 text-white font-semibold hover:scale-105 transition">
 
-          <h2 class="text-xl font-bold text-white">
-            📊 Stats
-          </h2>
+      Copy Link
 
-          <div class="mt-6 space-y-5">
+    </button>
 
-            <div class="rounded-2xl bg-[#1D1837] p-5">
+  </div>
 
-              <p class="text-gray-400">
-                Inbox
-              </p>
+</div>
 
-              <h3 class="text-4xl font-black text-cyan-400">
-                --
-              </h3>
+       <!-- Quick Stats -->
+<div
+  class="rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-5 sm:p-8">
 
-            </div>
+  <h2 class="text-lg sm:text-xl font-bold text-white">
+    📊 Stats
+  </h2>
 
-            <div class="rounded-2xl bg-[#1D1837] p-5">
+  <div class="mt-5 space-y-4">
 
-              <p class="text-gray-400">
-                Profile Status
-              </p>
+    <!-- Inbox -->
+    <div class="rounded-2xl bg-[#1D1837] p-4 sm:p-5">
 
-              <h3 class="text-green-400 font-bold">
-                Active
-              </h3>
+      <p class="text-gray-400 text-sm">
+        Inbox
+      </p>
 
-            </div>
+      <h3 class="mt-2 text-3xl sm:text-4xl font-black text-cyan-400">
+        --
+      </h3>
 
-          </div>
+    </div>
 
-        </div>
+    <!-- Status -->
+    <div class="rounded-2xl bg-[#1D1837] p-4 sm:p-5">
 
-      </div>
+      <p class="text-gray-400 text-sm">
+        Profile Status
+      </p>
 
+      <h3 class="mt-2 text-lg sm:text-xl font-bold text-green-400">
+        Active
+      </h3>
+
+    </div>
+
+  </div>
+
+</div>
       <!-- Buttons -->
-      <div class="grid md:grid-cols-2 gap-6 mt-10">
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
 
         <RouterLink
           to="/inbox"
