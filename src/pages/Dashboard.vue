@@ -1,38 +1,135 @@
 <template>
-  <div class="flex justify-center items-center min-h-screen bg-gray-50">
-    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-lg">
-      <h1 class="text-2xl font-bold text-center">Welcome, {{ user?.username }} 🎉</h1>
-      <p class="mt-2 text-center text-gray-600">Email: {{ user?.email }}</p>
+  <div class="min-h-screen bg-[#070414] relative overflow-hidden">
 
-      <div class="mt-6 bg-gray-100 p-4 rounded-lg text-center">
-        <p class="font-medium">Your Anonymous Share Link:</p>
-        <div class="flex items-center justify-between mt-2 bg-white border rounded-lg px-3 py-2">
-          <span class="text-blue-600 truncate">{{ fullShareLink }}</span>
-          <button
-            @click="copyLink"
-            class="ml-2 text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-          >
-            Copy
-          </button>
+    <!-- Background -->
+    <div class="absolute w-96 h-96 bg-cyan-500/20 blur-[160px] rounded-full -top-20 -left-20"></div>
+    <div class="absolute w-96 h-96 bg-pink-500/20 blur-[160px] rounded-full -bottom-20 -right-20"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-12">
+
+      <!-- Welcome -->
+      <div class="text-center mb-10">
+
+        <div
+          class="mx-auto w-24 h-24 rounded-full bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 flex items-center justify-center text-4xl font-bold text-white shadow-[0_0_50px_rgba(168,85,247,.5)]">
+
+          {{ user?.username.charAt(0).toUpperCase() }}
+
         </div>
+
+        <h1 class="mt-6 text-5xl font-black text-white">
+          Welcome,
+          <span
+            class="bg-gradient-to-r from-cyan-400 via-violet-400 to-pink-500 bg-clip-text text-transparent">
+
+            {{ user?.username }}
+
+          </span>
+        </h1>
+
+        <p class="mt-3 text-gray-400">
+          {{ user?.email }}
+        </p>
+
       </div>
 
-      <!-- Inbox button -->
-      <router-link
-        to="/inbox"
-        class="w-full mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg text-center hover:bg-blue-600 block"
-      >
-        📥 Go to Inbox
-      </router-link>
+      <!-- Cards -->
+      <div class="grid lg:grid-cols-3 gap-8">
 
-      <!-- Logout button -->
-      <button
-        @click="logout"
-        class="w-full mt-4 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600"
-      >
-        🚪 Logout
-      </button>
+        <!-- Share Link -->
+        <div
+          class="lg:col-span-2 rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-8">
+
+          <h2 class="text-2xl font-bold text-white">
+            🔗 Your Share Link
+          </h2>
+
+          <p class="text-gray-400 mt-2">
+            Share this link with your friends.
+          </p>
+
+          <div
+            class="mt-6 rounded-2xl bg-[#1D1837] border border-white/10 p-5 flex justify-between items-center">
+
+            <span class="text-cyan-400 truncate">
+              {{ fullShareLink }}
+            </span>
+
+            <button
+              @click="copyLink"
+              class="ml-5 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 px-6 py-3 text-white font-semibold hover:scale-105 transition">
+
+              Copy
+
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- Quick Stats -->
+        <div
+          class="rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-8">
+
+          <h2 class="text-xl font-bold text-white">
+            📊 Stats
+          </h2>
+
+          <div class="mt-6 space-y-5">
+
+            <div class="rounded-2xl bg-[#1D1837] p-5">
+
+              <p class="text-gray-400">
+                Inbox
+              </p>
+
+              <h3 class="text-4xl font-black text-cyan-400">
+                --
+              </h3>
+
+            </div>
+
+            <div class="rounded-2xl bg-[#1D1837] p-5">
+
+              <p class="text-gray-400">
+                Profile Status
+              </p>
+
+              <h3 class="text-green-400 font-bold">
+                Active
+              </h3>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="grid md:grid-cols-2 gap-6 mt-10">
+
+        <RouterLink
+          to="/inbox"
+          class="rounded-3xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 py-6 text-center text-white text-xl font-bold hover:scale-105 transition shadow-[0_0_40px_rgba(168,85,247,.4)]">
+
+          📥 Open Inbox
+
+        </RouterLink>
+
+        <button
+          @click="logout"
+          class="rounded-3xl bg-red-500 py-6 text-xl text-white font-bold hover:bg-red-600 transition">
+
+          🚪 Logout
+
+        </button>
+
+      </div>
+
     </div>
+
   </div>
 </template>
 
