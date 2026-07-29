@@ -214,7 +214,7 @@ MessageCircle
 } from "lucide-vue-next";
 import Swal from "sweetalert2";
 import html2canvas from "html2canvas";
-import Swal from "sweetalert2";
+
 
 const copyMessage = async (message) => {
   try {
