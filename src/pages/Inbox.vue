@@ -232,36 +232,17 @@ const copyMessage = async (message) => {
     console.error(err);
   }
 };
-const shareWhatsApp = async (message) => {
-  try {
-    const shareText = document.getElementById("shareText");
-  shareMessage.value = message;
+const shareWhatsApp = (message) => {
+  const text = `🎭 Anonymous Message
 
-  await nextTick();
+${message}
 
-    const card = document.getElementById("shareCard");
+https://truth-dare-frontend.vercel.app`;
 
-    const dataUrl = await toPng(card, {
-      cacheBust: true,
-      pixelRatio: 2,
-    });
-
-    const link = document.createElement("a");
-    link.download = "truthdare-message.png";
-    link.href = dataUrl;
-    link.click();
-
-    Swal.fire({
-      icon: "success",
-      title: "Image Ready!",
-      text: "The image has been downloaded. Upload it to your WhatsApp Status.",
-      background: "#151128",
-      color: "#fff",
-      confirmButtonColor: "#8b5cf6",
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  window.open(
+    `https://wa.me/?text=${encodeURIComponent(text)}`,
+    "_blank"
+  );
 };
 
 
