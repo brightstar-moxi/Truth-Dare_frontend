@@ -65,9 +65,17 @@
             <button
               type="button"
               @click="showPassword = !showPassword"
-              class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+              class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
 
-              {{ showPassword ? "🙈" : "👁️" }}
+             <EyeOff
+  v-if="showPassword"
+  class="w-5 h-5"
+/>
+
+<Eye
+  v-else
+  class="w-5 h-5"
+/>
 
             </button>
 
@@ -75,48 +83,46 @@
         </div>
 
         <!-- Login Button -->
-        <button
-          type="submit"
-          :disabled="loading"
-          class="w-full h-14 rounded-2xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 text-white font-bold text-lg hover:scale-105 transition disabled:opacity-60 disabled:cursor-not-allowed shadow-[0_0_35px_rgba(168,85,247,.45)]">
+<button
+  type="submit"
+  :disabled="loading"
+  class="w-full h-14 rounded-2xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 text-white font-bold text-lg hover:scale-105 transition disabled:opacity-60 disabled:cursor-not-allowed shadow-[0_0_35px_rgba(168,85,247,.45)]"
+>
+  <span
+    v-if="loading"
+    class="flex justify-center items-center gap-3"
+  >
+    <svg
+      class="animate-spin w-5 h-5"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="white"
+        stroke-width="3"
+        opacity=".3"
+      />
+      <path
+        d="M22 12a10 10 0 0 1-10 10"
+        stroke="white"
+        stroke-width="3"
+      />
+    </svg>
 
-          <span
-            v-if="loading"
-            class="flex justify-center items-center gap-3">
+    Logging in...
+  </span>
 
-            <svg
-              class="animate-spin h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none">
-
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="white"
-                stroke-width="3"
-                opacity=".3"
-              />
-
-              <path
-                d="M22 12a10 10 0 0 1-10 10"
-                stroke="white"
-                stroke-width="3"
-              />
-
-            </svg>
-
-            Logging in...
-
-          </span>
-
-          <span v-else>
-
-            🚀 Login
-
-          </span>
-
-        </button>
+  <span
+  v-else
+  class="flex items-center justify-center gap-2"
+>
+  <LogIn class="w-5 h-5" />
+  Login
+</span>
+</button>
 
       </form>
 
@@ -146,27 +152,52 @@ import { ref } from 'vue'
 import api from '../plugins/axios'
 import { useRouter } from 'vue-router'
 import { LockKeyhole, UserPlus, Gamepad2 } from "lucide-vue-next";
+import Swal from "sweetalert2";
+import { LogIn } from "lucide-vue-next";
+import { Eye, EyeOff } from "lucide-vue-next";
 
+const loading = ref(false);
+const showPassword = ref(false);
 
 const router = useRouter()
 const email = ref('')
 const password = ref('')
 
 const loginUser = async () => {
+  loading.value = true;
+
   try {
-    const { data } = await api.post('/auth/login', {
+    const { data } = await api.post("/auth/login", {
       email: email.value,
       password: password.value,
-    })
+    });
 
-    // ✅ save logged in user
-   localStorage.setItem("token", data.token);
-localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
 
-    // redirect to dashboard
-    router.push('/dashboard')
+    await Swal.fire({
+      icon: "success",
+      title: "Login Successful 🎉",
+      text: `Welcome back, ${data.user.username}!`,
+      background: "#151128",
+      color: "#fff",
+      confirmButtonColor: "#8b5cf6",
+      timer: 1800,
+      showConfirmButton: false,
+    });
+
+    router.push("/dashboard");
   } catch (err) {
-    alert(err.response?.data?.message || 'Login failed ❌')
+    Swal.fire({
+      icon: "error",
+      title: "Login Failed",
+      text: err.response?.data?.message || "Invalid email or password.",
+      background: "#151128",
+      color: "#fff",
+      confirmButtonColor: "#ef4444",
+    });
+  } finally {
+    loading.value = false;
   }
-}
+};
 </script>
