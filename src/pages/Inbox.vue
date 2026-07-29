@@ -163,9 +163,7 @@
 
   <div
   id="shareCard"
-  class="fixed -left-[9999px] top-0 w-[420px] p-10 rounded-[35px]
-  bg-[#151128]
-  border border-white/10">
+  class="fixed left-0 top-0 opacity-0 pointer-events-none z-[-1] w-[420px] p-10 rounded-[35px] bg-[#151128] border border-white/10">
 
   <h2
     class="text-3xl font-black text-center
@@ -176,11 +174,9 @@
 
   </h2>
 
-  <p
-    id="shareText"
-    class="mt-10 text-center text-2xl text-white leading-10">
-
-  </p>
+  <p class="mt-10 text-center text-2xl text-white leading-10">
+  {{ shareMessage }}
+</p>
 
   <div class="mt-10 border-t border-white/10 pt-6">
 
@@ -214,6 +210,9 @@ MessageCircle
 } from "lucide-vue-next";
 import Swal from "sweetalert2";
 import { toPng } from "html-to-image";
+import { nextTick } from "vue";
+
+const shareMessage = ref("");
 
 
 const copyMessage = async (message) => {
@@ -236,7 +235,9 @@ const copyMessage = async (message) => {
 const shareWhatsApp = async (message) => {
   try {
     const shareText = document.getElementById("shareText");
-    shareText.innerText = message;
+  shareMessage.value = message;
+
+  await nextTick();
 
     const card = document.getElementById("shareCard");
 
