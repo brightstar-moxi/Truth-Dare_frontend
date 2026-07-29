@@ -1,32 +1,163 @@
 <template>
-  <div class="flex justify-center items-center min-h-screen bg-gray-50">
-    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-2xl">
-      <!-- Back Button -->
-      <button
-        @click="router.push('/dashboard')"
-        class="mb-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-      >
-        ⬅ Back to Dashboard
-      </button>
+  <div class="min-h-screen bg-[#070414] relative overflow-hidden">
 
-      <h1 class="text-2xl font-bold text-center">📥 Your Inbox</h1>
+    <!-- Background Glow -->
+    <div class="absolute w-96 h-96 bg-cyan-500/20 blur-[150px] rounded-full -top-20 -left-20"></div>
+    <div class="absolute w-96 h-96 bg-pink-500/20 blur-[150px] rounded-full -bottom-20 -right-20"></div>
 
-      <div v-if="submissions.length === 0" class="mt-6 text-center text-gray-500">
-        No messages yet... 📨
-      </div>
+    <div class="relative z-10 max-w-5xl mx-auto px-5 py-10">
 
-      <div v-else class="mt-6 space-y-4">
-        <div
-          v-for="(submission, index) in submissions"
-          :key="index"
-          class="border rounded-lg p-4 bg-gray-50 shadow-sm"
-        >
-          <p class="text-sm text-gray-500">From: {{ submission.nickname || 'Anonymous' }}</p>
-          <p class="mt-2"><strong>{{ submission.type.toUpperCase() }}:</strong> {{ submission.content }}</p>
-          <p class="text-xs text-gray-400 mt-2">📅 {{ formatDate(submission.created_at) }}</p>
+      <!-- Top Bar -->
+      <div class="flex items-center justify-between">
+
+        <button
+          @click="router.push('/dashboard')"
+          class="flex items-center gap-2 rounded-xl bg-[#1D1837] px-5 py-3 text-white hover:bg-[#2A234A] transition">
+
+          <ArrowLeft class="w-5 h-5" />
+
+          Dashboard
+
+        </button>
+
+        <div class="text-right">
+
+          <h1 class="text-4xl font-black text-white flex items-center gap-3 justify-end">
+
+            <Inbox class="w-9 h-9 text-cyan-400" />
+
+            Inbox
+
+          </h1>
+
+          <p class="text-gray-400 mt-2">
+
+            {{ submissions.length }} Anonymous Messages
+
+          </p>
+
         </div>
+
       </div>
+
+      <!-- Empty -->
+      <div
+        v-if="submissions.length===0"
+        class="mt-16 rounded-3xl border border-white/10 bg-[#151128]/80 backdrop-blur-xl py-20 text-center">
+
+        <Inbox class="w-20 h-20 mx-auto text-gray-500" />
+
+        <h2 class="mt-6 text-3xl font-bold text-white">
+
+          No Messages Yet
+
+        </h2>
+
+        <p class="mt-3 text-gray-400">
+
+          Share your link with friends to receive anonymous messages.
+
+        </p>
+
+      </div>
+
+      <!-- Messages -->
+      <div
+        v-else
+        class="mt-10 space-y-6">
+
+        <div
+          v-for="submission in submissions"
+          :key="submission.id"
+          class="rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-6 hover:border-cyan-500/40 transition">
+
+          <!-- Header -->
+          <div class="flex justify-between items-start gap-4">
+
+            <div class="flex gap-4">
+
+              <div
+                class="w-14 h-14 rounded-full bg-gradient-to-r from-cyan-500 to-pink-500 flex items-center justify-center text-white font-bold text-xl">
+
+                A
+
+              </div>
+
+              <div>
+
+                <h3 class="text-white font-bold">
+
+                  Anonymous
+
+                </h3>
+
+                <p class="text-gray-400 text-sm">
+
+                  {{ formatDate(submission.created_at) }}
+
+                </p>
+
+              </div>
+
+            </div>
+
+            <span
+              class="px-4 py-2 rounded-full text-sm font-bold"
+              :class="submission.type==='truth'
+              ?'bg-cyan-500/20 text-cyan-400'
+              :'bg-pink-500/20 text-pink-400'">
+
+              {{ submission.type.toUpperCase() }}
+
+            </span>
+
+          </div>
+
+          <!-- Message -->
+          <div
+            class="mt-6 rounded-2xl bg-[#1D1837] p-5">
+
+            <p
+              class="text-lg leading-8 text-white">
+
+              {{ submission.content }}
+
+            </p>
+
+          </div>
+
+          <!-- Actions -->
+          <div
+            class="grid grid-cols-2 gap-4 mt-6">
+
+            <button
+              @click="copyMessage(submission.content)"
+              class="flex items-center justify-center gap-2 rounded-2xl bg-[#1D1837] py-4 text-white hover:bg-[#2A234A] transition">
+
+              <Copy class="w-5 h-5" />
+
+              Copy
+
+            </button>
+
+            <button
+              @click="shareWhatsApp(submission.content)"
+              class="flex items-center justify-center gap-2 rounded-2xl bg-green-600 py-4 text-white hover:bg-green-700 transition">
+
+              <MessageCircle class="w-5 h-5" />
+
+              WhatsApp
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
+
   </div>
 </template>
 
@@ -34,6 +165,12 @@
 import { ref, onMounted } from 'vue'
 import api from '../plugins/axios'
 import { useRouter } from 'vue-router'
+import {
+ArrowLeft,
+Inbox,
+Copy,
+MessageCircle
+} from "lucide-vue-next";
 
 const submissions = ref([])
 const router = useRouter()
