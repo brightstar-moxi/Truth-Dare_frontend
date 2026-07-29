@@ -213,7 +213,7 @@ Copy,
 MessageCircle
 } from "lucide-vue-next";
 import Swal from "sweetalert2";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 
 
 const copyMessage = async (message) => {
@@ -234,35 +234,33 @@ const copyMessage = async (message) => {
   }
 };
 const shareWhatsApp = async (message) => {
+  try {
+    const shareText = document.getElementById("shareText");
+    shareText.innerText = message;
 
-  document.getElementById("shareText").innerText = message;
+    const card = document.getElementById("shareCard");
 
-  const card = document.getElementById("shareCard");
+    const dataUrl = await toPng(card, {
+      cacheBust: true,
+      pixelRatio: 2,
+    });
 
-  const canvas = await html2canvas(card, {
-    backgroundColor: null,
-    scale: 2,
-  });
+    const link = document.createElement("a");
+    link.download = "truthdare-message.png";
+    link.href = dataUrl;
+    link.click();
 
-  const image = canvas.toDataURL("image/png");
-
-  const link = document.createElement("a");
-
-  link.href = image;
-
-  link.download = "truthdare-message.png";
-
-  link.click();
-
-  Swal.fire({
-    icon: "success",
-    title: "Image Ready!",
-    text: "The image has been downloaded. Upload it to your WhatsApp Status.",
-    background: "#151128",
-    color: "#fff",
-    confirmButtonColor: "#8b5cf6",
-  });
-
+    Swal.fire({
+      icon: "success",
+      title: "Image Ready!",
+      text: "The image has been downloaded. Upload it to your WhatsApp Status.",
+      background: "#151128",
+      color: "#fff",
+      confirmButtonColor: "#8b5cf6",
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 
@@ -290,9 +288,16 @@ const fetchInbox = async () => {
   }
 };
 
-const formatDate = (dateStr) => {
-  return new Date(dateStr).toLocaleString()
-}
+const formatDate = (date) => {
+  return new Date(date).toLocaleString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+};
 
 onMounted(fetchInbox)
 </script>
