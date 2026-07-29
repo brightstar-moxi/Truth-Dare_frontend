@@ -40,9 +40,10 @@
         <div
           class="lg:col-span-2 rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-8">
 
-          <h2 class="text-2xl font-bold text-white">
-            🔗 Your Share Link
-          </h2>
+         <h2 class="flex items-center gap-3 text-2xl font-bold text-white">
+  <Link2 class="w-6 h-6 text-cyan-400" />
+  Your Share Link
+</h2>
 
           <p class="text-gray-400 mt-2">
             Share this link with your friends.
@@ -65,12 +66,13 @@
     </div>
 
     <button
-      @click="copyLink"
-      class="w-full sm:w-auto rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 px-6 py-3 text-white font-semibold hover:scale-105 transition">
+  @click="copyLink"
+  class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 px-6 py-3 text-white font-semibold hover:scale-105 transition">
 
-      Copy Link
+  <Copy class="w-5 h-5" />
+  Copy Link
 
-    </button>
+</button>
 
   </div>
 
@@ -80,10 +82,10 @@
 <div
   class="rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-5 sm:p-8">
 
-  <h2 class="text-lg sm:text-xl font-bold text-white">
-    📊 Stats
-  </h2>
-
+<h2 class="flex items-center gap-3 text-xl font-bold text-white">
+  <ChartColumn class="w-6 h-6 text-pink-400" />
+  Stats
+</h2>
   <div class="mt-5 space-y-4">
 
     <!-- Inbox -->
@@ -118,21 +120,23 @@
       <!-- Buttons -->
     <div class="grid md:grid-cols-2 gap-6 mt-10">
 
-        <RouterLink
-          to="/inbox"
-          class="rounded-3xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 py-6 text-center text-white text-xl font-bold hover:scale-105 transition shadow-[0_0_40px_rgba(168,85,247,.4)]">
+     <RouterLink
+  to="/inbox"
+  class="rounded-3xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 py-6 text-white text-xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition shadow-[0_0_40px_rgba(168,85,247,.4)]">
 
-          📥 Open Inbox
+  <Inbox class="w-6 h-6" />
+  Open Inbox
 
-        </RouterLink>
+</RouterLink>
 
-        <button
-          @click="logout"
-          class="rounded-3xl bg-red-500 py-6 text-xl text-white font-bold hover:bg-red-600 transition">
+       <button
+  @click="logout"
+  class="rounded-3xl bg-red-500 py-6 text-xl text-white font-bold flex items-center justify-center gap-3 hover:bg-red-600 transition">
 
-          🚪 Logout
+  <LogOut class="w-6 h-6" />
+  Logout
 
-        </button>
+</button>
 
       </div>
 
@@ -146,6 +150,13 @@
 import { ref, onMounted, computed } from 'vue'
 import api from '../plugins/axios'
 import { useRouter } from 'vue-router'
+import {
+  Link2,
+  ChartColumn,
+  Inbox,
+  LogOut,
+  Copy
+} from "lucide-vue-next";
 
 const router = useRouter()
 const user = ref(null)
