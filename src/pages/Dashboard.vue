@@ -115,7 +115,7 @@
     </div>
 
   </div>
-
+</div>
 </div>
       <!-- Buttons -->
     <div class="grid md:grid-cols-2 gap-6 mt-10">
