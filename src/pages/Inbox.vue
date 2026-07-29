@@ -171,6 +171,38 @@ Inbox,
 Copy,
 MessageCircle
 } from "lucide-vue-next";
+import Swal from "sweetalert2";
+
+const copyMessage = async (message) => {
+  try {
+    await navigator.clipboard.writeText(message);
+
+    Swal.fire({
+      icon: "success",
+      title: "Copied!",
+      text: "Message copied to clipboard.",
+      timer: 1500,
+      showConfirmButton: false,
+      background: "#151128",
+      color: "#fff",
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+const shareWhatsApp = (message) => {
+  const text =
+`🎭 Anonymous Truth & Dare
+
+"${message}"
+
+Sent via TruthDare 💜`;
+
+  window.open(
+    `https://wa.me/?text=${encodeURIComponent(text)}`,
+    "_blank"
+  );
+};
 
 const submissions = ref([])
 const router = useRouter()
