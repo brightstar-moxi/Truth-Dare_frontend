@@ -159,6 +159,47 @@
     </div>
 
   </div>
+
+
+  <div
+  id="shareCard"
+  class="fixed -left-[9999px] top-0 w-[420px] p-10 rounded-[35px]
+  bg-[#151128]
+  border border-white/10">
+
+  <h2
+    class="text-3xl font-black text-center
+    bg-gradient-to-r from-cyan-400 via-violet-500 to-pink-500
+    bg-clip-text text-transparent">
+
+    Anonymous 💜
+
+  </h2>
+
+  <p
+    id="shareText"
+    class="mt-10 text-center text-2xl text-white leading-10">
+
+  </p>
+
+  <div class="mt-10 border-t border-white/10 pt-6">
+
+    <p class="text-center text-gray-400">
+
+      Sent from
+
+    </p>
+
+    <h3
+      class="text-center text-xl font-bold text-cyan-400">
+
+      TruthDare
+
+    </h3>
+
+  </div>
+
+</div>
 </template>
 
 <script setup>
@@ -171,6 +212,8 @@ Inbox,
 Copy,
 MessageCircle
 } from "lucide-vue-next";
+import Swal from "sweetalert2";
+import html2canvas from "html2canvas";
 import Swal from "sweetalert2";
 
 const copyMessage = async (message) => {
@@ -190,19 +233,41 @@ const copyMessage = async (message) => {
     console.error(err);
   }
 };
-const shareWhatsApp = (message) => {
-  const text =
-`🎭 Anonymous Truth & Dare
+const shareWhatsApp = async (message) => {
 
-"${message}"
+  document.getElementById("shareText").innerText = message;
 
-Sent via TruthDare 💜`;
+  const card = document.getElementById("shareCard");
 
-  window.open(
-    `https://wa.me/?text=${encodeURIComponent(text)}`,
-    "_blank"
-  );
+  const canvas = await html2canvas(card, {
+    backgroundColor: null,
+    scale: 2,
+  });
+
+  const image = canvas.toDataURL("image/png");
+
+  const link = document.createElement("a");
+
+  link.href = image;
+
+  link.download = "truthdare-message.png";
+
+  link.click();
+
+  Swal.fire({
+    icon: "success",
+    title: "Image Ready!",
+    text: "The image has been downloaded. Upload it to your WhatsApp Status.",
+    background: "#151128",
+    color: "#fff",
+    confirmButtonColor: "#8b5cf6",
+  });
+
 };
+
+
+
+
 
 const submissions = ref([])
 const router = useRouter()
