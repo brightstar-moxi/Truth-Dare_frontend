@@ -34,88 +34,87 @@
       </div>
 
       <!-- Cards -->
-     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-        <!-- Share Link -->
-        <div
-          class="lg:col-span-2 rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-8">
+  <!-- Share Link -->
+  <div
+    class="lg:col-span-2 rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-8">
 
-         <h2 class="flex items-center gap-3 text-2xl font-bold text-white">
-  <Link2 class="w-6 h-6 text-cyan-400" />
-  Your Share Link
-</h2>
+    <h2 class="flex items-center gap-3 text-2xl font-bold text-white">
+      <Link2 class="w-6 h-6 text-cyan-400" />
+      Your Share Link
+    </h2>
 
-          <p class="text-gray-400 mt-2">
-            Share this link with your friends.
+    <p class="text-gray-400 mt-2">
+      Share this link with your friends.
+    </p>
+
+    <div class="mt-6 rounded-2xl bg-[#1D1837] border border-white/10 p-5">
+
+      <div class="flex flex-col sm:flex-row gap-4">
+
+        <div class="flex-1 overflow-hidden">
+
+          <p class="text-cyan-400 break-all text-sm sm:text-base">
+            {{ fullShareLink }}
           </p>
 
-         <div
-  class="mt-6 rounded-2xl bg-[#1D1837] border border-white/10 p-5">
+        </div>
 
-  <div class="flex flex-col sm:flex-row gap-4">
+        <button
+          @click="copyLink"
+          class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 px-6 py-3 text-white font-semibold hover:scale-105 transition">
 
-    <div class="flex-1 overflow-hidden">
+          <Copy class="w-5 h-5" />
+          Copy Link
 
-      <p
-        class="text-cyan-400 break-all text-sm sm:text-base">
+        </button>
 
-        {{ fullShareLink }}
-
-      </p>
+      </div>
 
     </div>
-
-    <button
-  @click="copyLink"
-  class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-pink-500 px-6 py-3 text-white font-semibold hover:scale-105 transition">
-
-  <Copy class="w-5 h-5" />
-  Copy Link
-
-</button>
 
   </div>
 
-</div>
+  <!-- Quick Stats -->
+  <div
+    class="rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-5 sm:p-8">
 
-       <!-- Quick Stats -->
-<div
-  class="rounded-3xl bg-[#151128]/80 border border-white/10 backdrop-blur-xl p-5 sm:p-8">
+    <h2 class="flex items-center gap-3 text-xl font-bold text-white">
+      <ChartColumn class="w-6 h-6 text-pink-400" />
+      Stats
+    </h2>
 
-<h2 class="flex items-center gap-3 text-xl font-bold text-white">
-  <ChartColumn class="w-6 h-6 text-pink-400" />
-  Stats
-</h2>
-  <div class="mt-5 space-y-4">
+    <div class="mt-5 space-y-4">
 
-    <!-- Inbox -->
-    <div class="rounded-2xl bg-[#1D1837] p-4 sm:p-5">
+      <div class="rounded-2xl bg-[#1D1837] p-4 sm:p-5">
 
-      <p class="text-gray-400 text-sm">
-        Inbox
-      </p>
+        <p class="text-gray-400 text-sm">
+          Inbox
+        </p>
 
-      <h3 class="mt-2 text-3xl sm:text-4xl font-black text-cyan-400">
-        --
-      </h3>
+        <h3 class="mt-2 text-3xl sm:text-4xl font-black text-cyan-400">
+          --
+        </h3>
+
+      </div>
+
+      <div class="rounded-2xl bg-[#1D1837] p-4 sm:p-5">
+
+        <p class="text-gray-400 text-sm">
+          Profile Status
+        </p>
+
+        <h3 class="mt-2 text-lg sm:text-xl font-bold text-green-400">
+          Active
+        </h3>
+
+      </div>
 
     </div>
 
-    <!-- Status -->
-    <div class="rounded-2xl bg-[#1D1837] p-4 sm:p-5">
-
-      <p class="text-gray-400 text-sm">
-        Profile Status
-      </p>
-
-      <h3 class="mt-2 text-lg sm:text-xl font-bold text-green-400">
-        Active
-      </h3>
-
-    </div>
-</div>
   </div>
-</div>
+
 </div>
       <!-- Buttons -->
     <div class="grid md:grid-cols-2 gap-6 mt-10">
